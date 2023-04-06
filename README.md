@@ -9,8 +9,8 @@ Experiment Overview: We initially test against against the KITTI benchmark to co
 We tested this project in *Ubuntu 18.04*. Additionally, the original repository reports testing for *Ubuntu 12.04*, *14.04*, and *16.04*. Using a HP-360x-Spectre with 4 cores, Intel Core i7, and no GPU. Thus we  we achieved SuperPoint-SLAM at 5 seconds per frame.
 
 # 2. Intial Steps
-`cd ~/your_preferred_code_direcotry
-git clone https://github.com/TwilightSLAM/Twilight_SuperPoint_SLAM.git`
+`cd ~/your_preferred_code_direcotry`
+`git clone https://github.com/TwilightSLAM/Twilight_SuperPoint_SLAM.git`
 
 # 3. 3rd Party Installations
 We provide the library versions, downloading suggestions, and links to original repositories to streamline the installation process.

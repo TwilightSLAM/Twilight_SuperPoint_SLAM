@@ -1,5 +1,5 @@
 # Twilight_SuperPoint_SLAM
-Primary Objective: To investigate hypothesized performance improvements of SuperPoint-SLAM, a monocular visual SLAM technique combining superpoint's neural network-based feature detection and description with the ORB-SLAM2 architecture, employing image enhancing modules for underexposed or "twilight" monocular SLAM dataset sequences. 
+Primary Objective: To investigate hypothesized performance improvements of SuperPoint-SLAM, a monocular visual SLAM technique combining superpoint's neural network-based feature detection and description with the ORB-SLAM2 architecture, employing image enhancing modules for low light or "twilight" monocular SLAM dataset sequences. 
 
 Secondary Objectve: To provide tools for streamlining evaluation of multiple datasets.
 

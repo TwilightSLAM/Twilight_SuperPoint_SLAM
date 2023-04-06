@@ -18,60 +18,56 @@ cd Twilight_SuperPoint_SLAM
 # 3. 3rd Party Installations
 We provide the library versions, downloading suggestions, and links to original repositories to streamline the installation process.
 
-## Pangolin 
-### Version Used: v0.6
+## Pangolin v0.6
 ### Recommended Steps:
-`
+``` bash
+# build in third party directory (recommended)
 cd thirdparty
 
+# build Pangolin
 git clone 
-
 git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
-
 cd Pangolin
-
 git checkout v0.6
-
 ./scripts/install_prerequisites.sh recommended
-
 mkdir build && cd build
-
 cmake ..
-
+make -j2
 make install
-`
+
+# return to thirdparty directory
+cd ../..
+```
 ### Original Repository: https://github.com/stevenlovegrove/Pangolin
 
 ## OpenCV 3.2
-### Version Used:
-### Recommended Steps:
-`
-
-`
+```bash
+Recommended Guide: https://gist.github.com/syneart/3e6bb68de8b6390d2eb18bff67767dcb
+```
 ### Original Repository:
 
-## Eigen3
-### Version Used:
-### Recommended Steps:
-`
+## Eigen3 3.4
+You should have already installed libeigen via the recommended instruction for building OpenCV. If not, install 
+```bash
 
-`
+
+```
 ### Original Repository:
 
 ## SuperPoint-SLAM
-### Version Used:
-### Recommended Steps:
-`
 
-`
+### Recommended Steps:
+```bash
+
+```
 ### Original Repository:
 
 ## Libtorch
 ### Version Used:
 ### Recommended Steps:
-`
+```bash
 
-`
+```
 ### Original Repository:
 
 4. Install SLAM Datasets and Enhance Images

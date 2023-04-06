@@ -23,13 +23,21 @@ We provide the library versions, downloading suggestions, and links to original 
 ### Recommended Steps:
 `
 cd thirdparty
+
 git clone 
+
 git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
+
 cd Pangolin
+
 git checkout v0.6
+
 ./scripts/install_prerequisites.sh recommended
+
 mkdir build && cd build
+
 cmake ..
+
 make install
 `
 ### Original Repository: https://github.com/stevenlovegrove/Pangolin

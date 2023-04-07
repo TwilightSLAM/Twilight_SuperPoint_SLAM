@@ -35,7 +35,7 @@ sequences_P001 = ["abandonedfactory_sample_P001/P001"]
 kitti_sequences = []
 tartan_sequences = []
 
-kitti_sequences = sequences_04
+kitti_sequences = ["04_zero"]
 
 
 # set directory to Twighlight-SLAM

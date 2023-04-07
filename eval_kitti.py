@@ -1,3 +1,7 @@
+# This script contains code created for eval_kitti.py in SuperPoint-SLAM at https://github.com/KinglittleQ/SuperPoint_SLAM
+# and alterned for use in Twilight-SuperPoint-SLAM at https://github.com/TwilightSLAM/Twilight_SuperPoint_SLAM
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 import sys, os
@@ -16,8 +20,6 @@ def gen_data(ground_time, res_time, ground_data):
 		data_1.append(np.concatenate(([ground_time[num]], ground_data[num])))
 
 	data_2 = []
-
-
 
 
 	for num in range(len(res_time)):
@@ -101,48 +103,35 @@ def align(model,data):
 
 if __name__ == '__main__':
 
-	for path in os.listdir(os.getcwd()+"/evaluations/estimated_trajectories"): #Path to the KeyFrameTrajectory.txt file
-		sequence = path.split("_")[0]
+	# evaluate KITTI seuqences
+	kitti_trajectories_path = os.getcwd() + "/evaluations/estimated_trajectories/KITTI/"
+	for path in os.listdir(kitti_trajectories_path): #Path to the KeyFrameTrajectory.txt file
+		
 		#Path to the times.txt in KITTI dataset
-		print(os.getcwd())
+		sequence = path.split("_")[0]
 		ground_time = np.loadtxt(os.getcwd() + '/datasets/KITTI/data_odometry_color/dataset/sequences/'+sequence+'/times.txt')
-	
-		res_time = np.loadtxt(os.getcwd() + "/evaluations/estimated_trajectories/"+ path)
+		res_time = np.loadtxt(kitti_trajectories_path + path)
 	
 		#Path to the ground truth file
 		ground_data = np.loadtxt(os.getcwd() + '/datasets/KITTI/data_odometry_color/dataset/poses/'+sequence+'.txt')
 		data= gen_data(ground_time, res_time, ground_data)
 		ground_points = np.asarray(get_coo(data))
 		re_points = np.asarray(get_points(res_time))
-		# print(type(ground_points))
 		rot,trans,trans_error,s = align(re_points, ground_points)
-		# print(rot)
 		re_fpoints = s*rot*re_points+trans
-		# print(re_fpoints[0])
-		# print(trans_error)
+
+		# save plot of ground truth and estimated trajectories
+		name = path.split(".")[0]
 		plt.axis('equal')
 		ground_truth = plt.scatter(ground_points[0], ground_points[2], s=3, c='blue')
 		estimated = plt.scatter(list(re_fpoints[0]), list(re_fpoints[2]), s=3, c='red')
 		plt.legend([ground_truth,estimated],["ground truth","estimated"])
-		# aa = list(re_fpoints[0])
-		# x = aa[0].tolist()
-		# aa = list(re_fpoints[2])
-		# y = aa[0].tolist()
-		name = path.split(".")[0]
+		plt.xlabel('x (m)')
+		plt.ylabel('y (m)') 
 		plt.savefig(os.getcwd() + '/evaluations/plots/'+name+'.png')
-
 		
-		print(name)
-		print ("compared_pose_pairs %d pairs"%(len(trans_error)))
-		print ("absolute_translational_error.rmse %f m"%np.sqrt(np.dot(trans_error,trans_error) / len(trans_error)))
-		print ("absolute_translational_error.mean %f m"%np.mean(trans_error))
-		print ("absolute_translational_error.median %f m"%np.median(trans_error))
-		print ("absolute_translational_error.std %f m"%np.std(trans_error))
-		print ("absolute_translational_error.min %f m"%np.min(trans_error))
-		print ("absolute_translational_error.max %f m"%np.max(trans_error))
-
+		# save metrics txt file
 		times_file = open(os.getcwd() + '/evaluations/metrics/'+name+'.txt',"w+")
-		
 		times_file.write("compared_pose_pairs %d pairs\r\n"%(len(trans_error)))
 		times_file.write("absolute_translational_error.rmse %f m\r\n"%np.sqrt(np.dot(trans_error,trans_error) / len(trans_error)))
 		times_file.write("absolute_translational_error.mean %f m\r\n"%np.mean(trans_error))
@@ -150,6 +139,14 @@ if __name__ == '__main__':
 		times_file.write("absolute_translational_error.std %f m\r\n"%np.std(trans_error))
 		times_file.write("absolute_translational_error.min %f m\r\n"%np.min(trans_error))
 		times_file.write("absolute_translational_error.max %f m\r\n"%np.max(trans_error))
+
+		# print ("compared_pose_pairs %d pairs"%(len(trans_error)))
+		# print ("absolute_translational_error.rmse %f m"%np.sqrt(np.dot(trans_error,trans_error) / len(trans_error)))
+		# print ("absolute_translational_error.mean %f m"%np.mean(trans_error))
+		# print ("absolute_translational_error.median %f m"%np.median(trans_error))
+		# print ("absolute_translational_error.std %f m"%np.std(trans_error))
+		# print ("absolute_translational_error.min %f m"%np.min(trans_error))
+		# print ("absolute_translational_error.max %f m"%np.max(trans_error))
 		
 		#plt.show()
 

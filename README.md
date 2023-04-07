@@ -16,10 +16,11 @@ cd Twilight_SuperPoint_SLAM
 `
 
 # 3. 3rd Party Installations
-We provide the library versions, downloading suggestions, and links to original repositories to streamline the installation process.
+To streamline the installation process, we provide the library versions that we used, links to the official respositories, and recommended installation steps/guides based on what worked for us.
 
 ## Pangolin v0.6
-### Recommended Steps:
+### Official Repository: https://github.com/stevenlovegrove/Pangolin
+### Recommended Steps
 ``` bash
 # build in third party directory (recommended)
 cd thirdparty
@@ -38,21 +39,19 @@ make install
 # return to thirdparty directory
 cd ../..
 ```
-### Original Repository: https://github.com/stevenlovegrove/Pangolin
 
 ## OpenCV 3.2
+### Official Repository: https://github.com/opencv/opencv.git
+### Recommended Guide: https://gist.github.com/syneart/3e6bb68de8b6390d2eb18bff67767dcb
+
+## Eigen3 3.3.4-4
+### Official Repository: http://eigen.tuxfamily.org/
+### Recommended Steps
+You should have already installed libeigen via the recommended instruction for building OpenCV. If not, try installing with
 ```bash
-Recommended Guide: https://gist.github.com/syneart/3e6bb68de8b6390d2eb18bff67767dcb
-```
-### Original Repository:
-
-## Eigen3 3.4
-You should have already installed libeigen via the recommended instruction for building OpenCV. If not, install 
-```bash
-
+sudo apt-get install libeigen3-dev
 
 ```
-### Original Repository:
 
 ## SuperPoint-SLAM
 
@@ -60,7 +59,6 @@ You should have already installed libeigen via the recommended instruction for b
 ```bash
 
 ```
-### Original Repository:
 
 ## Libtorch
 ### Version Used:

@@ -38,7 +38,6 @@ tartan_sequences = []
 kitti_sequences = sequences_04
 
 
-
 # set directory to Twighlight-SLAM
 try:
     os.mkdir(os.path.join(os.getcwd(),'evaluations'))
@@ -61,7 +60,7 @@ for sequence in tqdm(kitti_sequences):
     original = 'thirdparty/SuperPoint_SLAM/KeyFrameTrajectory.txt'
     now = datetime.now()
     timestamp = f"Y{now.year}_M{now.month}_D{now.day}_H{now.hour}_M{now.minute}_S{now.second}"
-    target = f'evaluations/{sequence}_KeyFrameTrajectory_{timestamp}.txt'
+    target = f'evaluations/estimated_trajectories/KITTI/{sequence}_KeyFrameTrajectory_{timestamp}.txt'
 
     if os.path.isfile(target):
         print(f"File {target} already exists")
@@ -84,7 +83,7 @@ for sequence in tqdm(tartan_sequences):
     original = 'thirdparty/SuperPoint_SLAM/KeyFrameTrajectory.txt'
     now = datetime.now()
     timestamp = f"Y{now.year}_M{now.month}_D{now.day}_H{now.hour}_M{now.minute}_S{now.second}"
-    target = f'evaluations/estimated_trajectories/{sequence.split("/")[-1]}_KeyFrameTrajectory_{timestamp}.txt'
+    target = f'evaluations/estimated_trajectories/TartanAir/{sequence.split("/")[-1]}_KeyFrameTrajectory_{timestamp}.txt'
 
     if os.path.isfile(target):
         print(f"File {target} already exists")

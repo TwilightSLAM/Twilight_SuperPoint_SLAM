@@ -6,16 +6,18 @@ Secondary Objectve: To provide tools for streamlining evaluation of multiple dat
 Experiment Overview: We initially test against against the KITTI benchmark to confirm pipeline success. Then, we test against ETH3D and Tartan Air benchmark data sequences which were qualitatively found to have more underexposed images on average or in general througout the entire sequence. Twilight dataset sequences that were too underexposed to initiate SuperPoint-SLAM wihout image enhancment modules were not considered.
 
 # 1. OS and Hardware Prerequisites
-We tested this project in *Ubuntu 18.04*. Additionally, the original repository reports testing for *Ubuntu 12.04*, *14.04*, and *16.04*. Using a HP-360x-Spectre with 4 cores, Intel Core i7, and no GPU. Thus we  we achieved SuperPoint-SLAM at 5 seconds per frame.
+We tested this project in **Ubuntu 18.04**. Additionally, the original repository reports testing for **Ubuntu 12.04**, **14.04**, and **16.04**. Using a HP-360x-Spectre with 4 cores, Intel Core i7, and no GPU. Thus we  we achieved SuperPoint-SLAM at 5 seconds per frame.
+
 
 # 2. Intial Steps
-`
-cd ~/your_preferred_code_direcotry
+```bash
+cd # to your preferred directory
 git clone https://github.com/TwilightSLAM/Twilight_SuperPoint_SLAM.git
 cd Twilight_SuperPoint_SLAM
-`
+```
 
-# 3. 3rd Party Installations
+
+# 3. Third Party Installations
 To streamline the installation process, we provide the library versions that we used, links to the official respositories, and recommended installation steps/guides based on what worked for us.
 
 ## Pangolin v0.6
@@ -40,7 +42,7 @@ make install
 cd ../..
 ```
 
-## OpenCV 3.2
+## OpenCV 3.2.0
 ### Official Repository: https://github.com/opencv/opencv.git
 ### Recommended Guide: https://gist.github.com/syneart/3e6bb68de8b6390d2eb18bff67767dcb
 
@@ -50,29 +52,54 @@ cd ../..
 You should have already installed libeigen via the recommended instruction for building OpenCV. If not, try installing with
 ```bash
 sudo apt-get install libeigen3-dev
-
-```
-
-## SuperPoint-SLAM
-
-### Recommended Steps:
-```bash
-
 ```
 
 ## Libtorch
-### Version Used:
-### Recommended Steps:
+### Official Repository:
+### Recommended Steps (per SuperPoint_SLAM repo):
 ```bash
-
+git clone --recursive -b v1.0.1 https://github.com/pytorch/pytorch
+cd pytorch && mkdir build && cd build
+python ../tools/build_libtorch.py
 ```
-### Original Repository:
 
-4. Install SLAM Datasets and Enhance Images
+## SuperPoint-SLAM
+### Official Repository: https://github.com/KinglittleQ/SuperPoint_SLAM.git
+### Recommended Steps: 
+```bash
+git clone https://github.com/KinglittleQ/SuperPoint_SLAM.git
+cd SuperPoint_SLAM
+
+# edit CMakeLists.txt, changing set(Torch_DIR "/home/deng/SP_SLAM/Thirdparty/libtorch/share/cmake/Torch") to the directory containing the libtorch torch config cmake file, e.g. set(Torch_DIR "/home/billymazotti/Documents/Twilight_SuperPoint_SLAM/thirdparty/pytorch/torch/lib/tmp_install/share/cmake/Torch")
+gedit CMakeLists.txt
+
+# build SuperPoint_SLAM and it's thirdparty modules (DBoW3 and g2o)
+chmod +x build.sh
+./build.sh
+```
+
+
+# 4. Install KITTI, TartanAir, and ETH3D SLAM Datasets
+
+
+# 5. Prepare and format TartanAir and ETH3D SLAM Datasets
+
+
+# 6. Enhance Images
 Follow steps in [INSERT REPO HERE] to download visual slam datasets (KITTI, Tartan Air, ETH3D and TUM) and generate new images using low light image enhancement modules (Bread, Dual, EnlightenGAN and ZeroDCE).
 
 Once images are downloaded, use the recommended direcotry formatting to store you images in order to use `run_multiple_sequences.py` and `evaluate_multiple_sequences.py`.
 
-5. Run SuperPoint-SLAM
 
-6. Evaluate 
+# 7. Run SuperPoint-SLAM
+The dataset sequences chosen for this study take 20 minutes to 3 hours to run each, therefore we edit and run the following python file to run SuperPoint-SLAM on and thereby generate estimated trajectories for multiple dataset sequences overnight.
+```bash
+python3 run_multiple_sequences.py
+```
+
+
+# 8. Evaluate 
+To speed up the evaluation process, use the following python script ti generate SLAM trajectory metrics and plots for for each estimated trajecotry.
+```bash
+python3 evaluate_multiple_sequences.py
+```

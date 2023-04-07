@@ -48,7 +48,6 @@ for file_name in tqdm(os.listdir(source_folder)):
 #rgb_file = open(formatted_main_path + "/"+ sequence_name + "/rgb.txt","w+")
 times_file = open(formatted_main_path + "/"+ sequence_name + "/times.txt","w+")
 
-
 print("\nCreating rgb.txt and times.txt...")
 for idx,img_path in tqdm(enumerate(img_paths)):
 

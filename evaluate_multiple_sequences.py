@@ -123,13 +123,15 @@ if __name__ == '__main__':
 		# save plot of ground truth and estimated trajectories
 		name = path.split(".")[0]
 		plt.axis('equal')
-		ground_truth = plt.scatter(ground_points[0], ground_points[2], s=5, c='blue')
-		estimated = plt.scatter(list(re_fpoints[0]), list(re_fpoints[2]), s=5, c='red')
-		plt.legend([ground_truth,estimated],["ground truth","estimated"])
-		plt.xlabel('x(m)', fontsize=24)
-		plt.ylabel('y(m)', fontsize=24) 
-		plt.xticks(fontsize=20)
-		plt.yticks(fontsize=20)
+		ground_truth = plt.scatter(ground_points[0], ground_points[2], s=0.5, c='blue')
+		estimated = plt.scatter(list(re_fpoints[0]), list(re_fpoints[2]), s=0.5, c='red')
+		plt.legend([ground_truth,estimated],["ground truth","estimated"], markerscale=3, fontsize=10)
+		plt.xlabel('x(m)')
+		plt.ylabel('y(m)')
+		#plt.xlabel('x(m)', fontsize=24)
+		#plt.ylabel('y(m)', fontsize=24) 
+		#plt.xticks(fontsize=20)
+		#plt.yticks(fontsize=20)
 		plt.savefig(os.getcwd() + '/evaluations/plots/'+name+'.png')
 		
 		# save metrics txt file

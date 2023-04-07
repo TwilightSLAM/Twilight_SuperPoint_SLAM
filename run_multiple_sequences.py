@@ -35,8 +35,7 @@ sequences_P001 = ["abandonedfactory_sample_P001/P001"]
 kitti_sequences = []
 tartan_sequences = []
 
-kitti_sequences = ["04_zero"]
-
+tartan_sequences = sequences_P001
 
 # set directory to Twighlight-SLAM
 try:
@@ -73,9 +72,10 @@ for sequence in tqdm(tartan_sequences):
     
     # set directory to SuperPoint-SLAM
     os.chdir(os.path.join(os.getcwd(),'thirdparty/SuperPoint_SLAM'))
-    sequence_path = "Formatted_TartanAir/" + sequence
+    sequence_path = "../../datasets/Formatted_TartanAir/" + sequence
 
     # execute sequence
+    print(f"{mono_tartan_path} {vocabuylary_path} {tartan_yaml_path} {sequence_path}")
     os.system(f"{mono_tartan_path} {vocabuylary_path} {tartan_yaml_path} {sequence_path}")
 
     # reutrn to Twilight-SLAM directory and save trajectory

@@ -24,7 +24,7 @@ tartan_yaml_path = "Examples/Monocular/TARTAN_AIR.yaml"  # kitti .ymal file for 
 
 # KITTI sequences
 sequences_04  = ["04","04_bread","04_dual","04_egan","04_zero"]
-sequences_06  = ["06","06_bread","06_dual","06_egan","06_zero"]
+sequences_06  = ["06_bread","06_dual","06_egan","06_zero"]
 sequences_07  = ["07","07_bread","07_dual","07_egan","07_zero"]
 
 # Tartan Air sequences
@@ -35,7 +35,8 @@ sequences_P001 = ["abandonedfactory_sample_P001/P001"]
 kitti_sequences = []
 tartan_sequences = []
 
-tartan_sequences = sequences_P001
+#tartan_sequences = sequences_P001
+kitti_sequences = sequences_06 + sequences_07
 
 # set directory to Twighlight-SLAM
 try:

@@ -33,15 +33,14 @@ kitti_sequences = []
 sequences_04  = ["04","04_bread","04_dual","04_egan","04_zero"]
 sequences_06  = ["06_bread","06_dual","06_egan","06_zero"]
 sequences_07  = ["07","07_bread","07_dual","07_egan","07_zero"]
-# kitti_sequences = sequences_04 + sequences_06 + sequences_07
+kitti_sequences = sequences_04 * 4 + sequences_06 * 4 + sequences_07 * 4
 
 
 # ETH3D
 eth3d_sequences = []
 sfm_house_loop = ["sfm_house_loop","sfm_house_loop_bread","sfm_house_loop_dual","sfm_house_loop_egan","sfm_house_loop_zero"]
-large_loop_1 = ["large_loop_1_bread","large_loop_1_dual","large_loop_1_egan","large_loop_1_zero"]
-ceiling_1 = ["sfm_lab_room_2"]
-eth3d_sequences = ceiling_1
+sfm_lab_room_2 = ["sfm_lab_room_2","sfm_lab_room_2_bread","sfm_lab_room_2_dual","sfm_lab_room_2_egan","sfm_lab_room_2_zero"]
+# eth3d_sequences = sfm_lab_room_2 * 5
 
 
 for sequence in tqdm(kitti_sequences):
@@ -64,9 +63,15 @@ for sequence in tqdm(kitti_sequences):
 
     if os.path.isfile(original):
         shutil.copyfile(original, target)
-        os.remove(original)
+        while True:
+            print("Copying Trajecotry File...")
+            if(os.path.isfile(target)):
+                print("Copying Trajectory File COMPLETE!")
+                os.remove(original)
+                break
+        
     else:
-        print("SEQEUENCE DID NOT FINISH, KeyFrameTrajectory.txt FILE WAS NOT GENERATED")
+        print("\nSEQEUENCE DID NOT FINISH, KeyFrameTrajectory.txt FILE WAS NOT GENERATED\n")
     
 for sequence in tqdm(eth3d_sequences):
     print(f"\n\nTESTING SEQUENCE: {sequence}")
@@ -77,8 +82,6 @@ for sequence in tqdm(eth3d_sequences):
 
     # path to yaml file
     yaml_path = sequence_path + "/ETH3D.yaml"
-    # st = os.stat(twilight_superpoint_slam + yaml_path.split("..")[-1])
-    # os.chmod(twilight_superpoint_slam + yaml_path.split("..")[-1], st.st_mode | stat.S_IEXEC)
 
     # execute sequence
     print(f"\n{mono_eth3d_path} {vocabuylary_path} {yaml_path} {sequence_path}")

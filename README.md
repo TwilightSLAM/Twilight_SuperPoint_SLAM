@@ -87,7 +87,7 @@ Match the same dataset format as KITTI datasets
 
 
 # 6. Enhance Images
-Follow steps in [INSERT REPO HERE] to download visual slam datasets (KITTI, Tartan Air, ETH3D and TUM) and generate new images using low light image enhancement modules (Bread, Dual, EnlightenGAN and ZeroDCE).
+Follow steps in [INSERT REPO HERE] to download visual slam datasets (KITTI and ETH3D) and generate new images using low light image enhancement modules (Bread, Dual, EnlightenGAN and ZeroDCE).
 
 Once images are downloaded, use the recommended direcotry formatting to store you images in order to use `run_multiple_sequences.py` and `evaluate_multiple_sequences.py`.
 

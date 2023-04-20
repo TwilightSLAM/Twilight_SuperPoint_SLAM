@@ -79,10 +79,11 @@ chmod +x build.sh
 ```
 
 
-# 4. Install KITTI, TartanAir, and ETH3D SLAM Datasets
+# 4. Install KITTI and ETH3D SLAM Datasets
 
 
-# 5. Prepare and format TartanAir and ETH3D SLAM Datasets
+# 5. Prepare and format ETH3D SLAM Datasets
+Match the same dataset format as KITTI datasets
 
 
 # 6. Enhance Images
